@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PyTorchTensorFlowCocoaPod'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'A short description of PyTorchTensorFlowCocoaPod.'
 
 # This description is used to generate tags and improve search results.
@@ -38,12 +38,11 @@ TODO: Add long description of the pod here.
   s.dependency 'LibTorch-Lite'
   
   s.pod_target_xcconfig = {
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/LibTorch-Lite/install/include'
-#      ,
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/LibTorch-Lite/install/include',
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
   s.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
   
   # s.resource_bundles = {
