@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'PyTorchTensorFlowCocoaPod_Example' do
+  pod 'PyTorchTensorFlowCocoaPod', :path => '../'
+
+  target 'PyTorchTensorFlowCocoaPod_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
