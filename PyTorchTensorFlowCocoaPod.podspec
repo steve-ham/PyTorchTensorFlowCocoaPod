@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PyTorchTensorFlowCocoaPod'
-  s.version          = '0.1.8'
+  s.version          = '0.1.9'
   s.summary          = 'A short description of PyTorchTensorFlowCocoaPod.'
   s.swift_version = '5.0'
 
@@ -38,14 +38,14 @@ TODO: Add long description of the pod here.
 #  s.dependency 'TensorFlowLiteSwift'
   s.dependency 'LibTorch-Lite'
   
-#  s.pod_target_xcconfig = {
-#      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/LibTorch-Lite/install/include'
-#      ,
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#  }
-#  s.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#  }
+  s.pod_target_xcconfig = {
+      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/LibTorch-Lite/install/include'
+      ,
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
+  s.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
   
   # s.resource_bundles = {
   #   'PyTorchTensorFlowCocoaPod' => ['PyTorchTensorFlowCocoaPod/Assets/*.png']
