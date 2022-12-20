@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PyTorchTensorFlowCocoaPod'
-  s.version          = '0.1.11'
+  s.version          = '0.1.12'
   s.summary          = 'A short description of PyTorchTensorFlowCocoaPod.'
   s.swift_version = '5.0'
 
@@ -35,16 +35,41 @@ TODO: Add long description of the pod here.
   
   s.static_framework = true
   
-  s.dependency 'TensorFlowLiteSwift'
+#  s.dependency 'TensorFlowLiteSwift'
   s.dependency 'LibTorch-Lite'
   
-  s.pod_target_xcconfig = {
-      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/LibTorch-Lite/install/include',
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
-  s.user_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
+  s.default_subspec = 'Core'
+      s.subspec 'Core' do |ss|
+          ss.dependency 'LibTorch/Torch'
+          ss.source_files = 'src/*.{h,cpp,c,cc}'
+          ss.public_header_files = ['src/LibTorch.h']
+      end
+      s.subspec 'Torch' do |ss|
+          ss.header_mappings_dir = 'install/include/'
+          ss.preserve_paths = 'install/include/**/*.{h,cpp,cc,c}'
+          ss.vendored_libraries = 'install/lib/*.a'
+          ss.libraries = ['c++', 'stdc++']
+      end
+      s.user_target_xcconfig = {
+          'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_ROOT)/LibTorch/install/include/"',
+          'OTHER_LDFLAGS' => '-force_load "$(PODS_ROOT)/LibTorch/install/lib/libtorch.a" -force_load "$(PODS_ROOT)/LibTorch/install/lib/libtorch_cpu.a"',
+          'CLANG_CXX_LANGUAGE_STANDARD' => 'c++14',
+          'CLANG_CXX_LIBRARY' => 'libc++'
+      }
+      s.pod_target_xcconfig = {
+          'HEADER_SEARCH_PATHS' => '$(inherited) "$(PODS_ROOT)/LibTorch/install/include/"',
+          'VALID_ARCHS' => 'x86_64 arm64'
+      }
+      s.library = ['c++', 'stdc++']
+      s.frameworks = 'Accelerate'
+  
+#  s.pod_target_xcconfig = {
+#      'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/LibTorch-Lite/install/include',
+#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#  }
+#  s.user_target_xcconfig = {
+#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#  }
   
   # s.resource_bundles = {
   #   'PyTorchTensorFlowCocoaPod' => ['PyTorchTensorFlowCocoaPod/Assets/*.png']
