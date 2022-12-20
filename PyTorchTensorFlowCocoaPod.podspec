@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PyTorchTensorFlowCocoaPod'
-  s.version          = '0.1.10'
+  s.version          = '0.1.11'
   s.summary          = 'A short description of PyTorchTensorFlowCocoaPod.'
   s.swift_version = '5.0'
 
@@ -35,7 +35,7 @@ TODO: Add long description of the pod here.
   
   s.static_framework = true
   
-#  s.dependency 'TensorFlowLiteSwift'
+  s.dependency 'TensorFlowLiteSwift'
   s.dependency 'LibTorch-Lite'
   
   s.pod_target_xcconfig = {
